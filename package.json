@@ -4,7 +4,7 @@
   "description": "a koa port of express-validator",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --harmony"
+    "test": "./node_modules/.bin/mocha --harmony"
   },
   "keywords": [
     "koa",
@@ -20,5 +20,8 @@
     "koa-router": "^3.1.4",
     "mocha": "^1.20.1",
     "supertest": "^0.13.0"
+  },
+  "dependencies": {
+    "validator": "^3.16.0"
   }
 }
