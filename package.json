@@ -1,0 +1,24 @@
+{
+  "name": "koa-validator",
+  "version": "0.0.1",
+  "description": "a koa port of express-validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --harmony"
+  },
+  "keywords": [
+    "koa",
+    "validator"
+  ],
+  "author": "Jeremial",
+  "license": "MIT",
+  "devDependencies": {
+    "async": "^0.9.0",
+    "chai": "^1.9.1",
+    "koa": "^0.8.0",
+    "koa-bodyparser": "^1.0.1",
+    "koa-router": "^3.1.4",
+    "mocha": "^1.20.1",
+    "supertest": "^0.13.0"
+  }
+}
