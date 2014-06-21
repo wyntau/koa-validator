@@ -1,6 +1,6 @@
 {
   "name": "koa-validator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a koa port of express-validator",
   "main": "index.js",
   "scripts": {

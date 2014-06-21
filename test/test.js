@@ -10,10 +10,6 @@ var koa = require('koa')
         app.use(bodyParser());
         app.use(validator());
         app.use(router(app));
-        app.use(function *(next){
-            console.log(this.checkParams);
-            yield next;
-        });
         return app;
     }
     ;
