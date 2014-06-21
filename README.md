@@ -24,6 +24,9 @@ a koa port of express-validator
         })
         .listen(3000)
 
+### Note
+If you will use `checkBody` or `assertBody`, you should use one bodyparse middleware before validator.
+
 ### Test
 
     npm test
