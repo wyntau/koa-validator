@@ -1,6 +1,6 @@
 {
   "name": "koa-validator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "a koa port of express-validator",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "koa",
     "validator"
   ],
-  "author": "Jeremial",
+  "author": "Treri",
   "license": "MIT",
   "devDependencies": {
     "async": "^0.9.0",
@@ -23,5 +23,16 @@
   },
   "dependencies": {
     "validator": "^3.16.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Treri/koa-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Treri/koa-validator/issues"
+  },
+  "homepage": "https://github.com/Treri/koa-validator"
 }
