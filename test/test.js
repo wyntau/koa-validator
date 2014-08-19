@@ -68,9 +68,10 @@ describe('validator', function(){
             this.checkBody('hw').isHalfWidth();
             this.checkBody('vw').isVariableWidth();
             this.checkBody('sp').isSurrogatePair();
-            if(errors = this.validationErrors()){
-                this.body = errors;
-                 return;
+
+            if(this.haveValidationError()){
+                this.body = this.validationErrors();
+                return;
             }
             this.body= 'ok';
         });
@@ -180,8 +181,8 @@ describe('validator', function(){
             this.checkBody('vw').isVariableWidth();
             this.checkBody('sp').isSurrogatePair();
 
-            errors = this.validationErrors();
-            if(errors){
+            if(this.haveValidationError()){
+                errors = this.validationErrors();
                 if(errors.length === 48){
                     this.body = 'ok';
                     return;
@@ -253,8 +254,8 @@ describe('validator', function(){
         app.get('/query',function*(){
             this.checkQuery('name').notEmpty();
             this.checkQuery('password').len(3,20);
-            if(errors = this.validationErrors()){
-                this.body = errors;
+            if(this.haveValidationError()){
+                this.body = errors = this.validationErrors();;
                  return;
             }
             this.body = 'ok';
@@ -274,9 +275,9 @@ describe('validator', function(){
             ;
         app.get('/:id',function*(){
             this.checkParams('id').isInt();
-            if(errors = this.validationErrors()){
-                this.body = errors;
-                 return;
+            if(this.haveValidationError()){
+                this.body = this.validationErrors();
+                return;
             }
             this.body = 'ok';
         });

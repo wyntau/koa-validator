@@ -14,25 +14,42 @@ a koa port of express-validator
 ### Usage
 
     var koa = require('koa')
-        , validator = require('koa-validator')()
+        , validator = require('koa-validator')
         , bodyParser = require('koa-bodyparser')
         , app = koa()
         ;
 
     app
         .use(bodyParser())
-        .use(function*(next) {
-            this.onErrorCallback = function(errMsg) {
-                throw new Error('Validation error: ' + errMsg);
-            };
-            
-            yield validator.call(this, next);
-        })
+        .use(validator({
+            onValidationError: function(errMsg){
+                console.log('Validation error:', errMsg);
+            }
+        }))
         .use(functon *(next){
             this.checkParams('testparam', 'Invalid number').isInt();
             yield next;
         })
         .listen(3000)
+
+### Options
+- onValidationError - `function(errMsg)`, default to null. The `errMsg` is the errMsg you defined when you check one variable
+
+    You can define the function like this
+
+        function(errMsg){
+            throw new Error('Validation error: ' + errMsg);
+        }
+
+- validationErrorFormatter - `function(paramName, errMsg, value)`, the default function is below
+
+        function(paramName, errMsg, value){
+            return {
+                param: paramName
+                , msg: errMsg
+                , value: value
+            };
+        }
 
 ### Note
 If you will use `checkBody` or `assertBody`, you should use one bodyparse middleware before validator.
@@ -53,8 +70,8 @@ If you will use `checkBody` or `assertBody`, you should use one bodyparse middle
 - assertQuery => checkQuery
 - assertBody => checkBody
 - assertHeader => checkHeader
-- onValidationError
-- validationErrors
+- haveValidationError, return `true` if have any validationError
+- validationErrors, if have any validationError, return an array of error object you returned in `validatorErrorFormatter`
 
 ### Check
 You can use all check methods in `validator.js`.
