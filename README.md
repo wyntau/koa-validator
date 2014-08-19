@@ -3,7 +3,7 @@
 [![NPM version](https://badge.fury.io/js/koa-validator.svg)](http://badge.fury.io/js/koa-validator)
 [![Dependency Status](https://david-dm.org/Treri/koa-validator.svg)](https://david-dm.org/Treri/koa-validator)
 
-[![NPM](https://nodei.co/npm/koa-validator.png?downloads=true&stars=true)](https://nodei.co/npm/koa-validator.png?downloads=true&stars=true)
+[![NPM](https://nodei.co/npm/koa-validator.png?downloads=true&stars=true)](https://www.npmjs.org/package/koa-validator)
 
 a koa port of express-validator
 
@@ -50,6 +50,12 @@ If you will use `checkBody` or `assertBody`, you should use one bodyparse middle
 - assertHeader => checkHeader
 - onValidationError
 - validationErrors
+
+### Check
+You can use all check methods in `validator.js`.
+
+### Sanitize
+You can use all sanitize methods in `validator.js`.
 
 ### LICENSE
 MIT
