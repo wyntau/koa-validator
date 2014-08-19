@@ -26,7 +26,9 @@ describe('validator', function(){
             this.checkBody('float_').isFloat();
             this.checkBody('in').in([1,2]);
             this.checkBody('eq').eq("eq");
+            this.checkBody('eqeq').eqeq('1');
             this.checkBody('neq').neq("eq");
+            this.checkBody('neqeq').neqeq(1);
             this.checkBody('number4').gt(3);
             this.checkBody('number4').lt(5);
             this.checkBody('number4').ge(4);
@@ -52,7 +54,7 @@ describe('validator', function(){
             this.checkBody('div').isDivisibleBy(3);
             this.checkBody('n').isNull();
             this.checkBody('len').isLength(1,4);
-            this.checkBody('byteLength').isByteLength(4,6);
+            this.checkBody('byteLength').byteLength(4,6);
             this.checkBody('uuid').isUUID();
             this.checkBody('date').isDate();
             this.checkBody('time').isTime();
@@ -88,7 +90,9 @@ describe('validator', function(){
             float_:1.23,
             in:1,
             eq:"eq",
+            eqeq: '1',
             neq:'neq',
+            neqeq: '1',
             number4:'4',
             contains:"contains",
             notContains:"notContains",
@@ -140,6 +144,7 @@ describe('validator', function(){
             this.checkBody('float_').isFloat();
             this.checkBody('in').in([1,2]);
             this.checkBody('eq').eq("eq");
+            this.checkBody('eqeq').eqeq(1);
             this.checkBody('neq').neq("eq");
             this.checkBody('number4').gt(5);
             this.checkBody('number4').lt(3);
@@ -164,7 +169,7 @@ describe('validator', function(){
             this.checkBody('div').isDivisibleBy(3);
             this.checkBody('n').isNull();
             this.checkBody('len').isLength(3,4);
-            this.checkBody('byteLength').isByteLength(4,6);
+            this.checkBody('byteLength').byteLength(4,6);
             this.checkBody('uuid').isUUID();
             this.checkBody('time').isTime();
             this.checkBody('date').isDate();
@@ -183,7 +188,7 @@ describe('validator', function(){
 
             if(this.haveValidationError()){
                 errors = this.validationErrors();
-                if(errors.length === 48){
+                if(errors.length === 49){
                     this.body = 'ok';
                     return;
                 }else{
@@ -208,6 +213,7 @@ describe('validator', function(){
             float_:'a1.23',
             in:'fd',
             eq:"neq",
+            eqeq: 1,
             neq:'eq',
             number4:'4',
             contains:"hello" ,
