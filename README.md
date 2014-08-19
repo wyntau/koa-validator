@@ -14,7 +14,7 @@ a koa port of express-validator
 ### Usage
 
     var koa = require('koa')
-        , validator = require('koa-validator')
+        , validator = require('koa-validator')()
         , bodyParser = require('koa-bodyparser')
 
         , app = koa()
@@ -22,7 +22,13 @@ a koa port of express-validator
 
     app
         .use(bodyParser())
-        .use(validator())
+        .use(function*(next) {
+            this.onErrorCallback = function(errMsg) {
+                throw new Error('Validation error: ' + errMsg);
+            };
+            
+            yield validator.call(this, next);
+        })
         .use(functon *(next){
             this.checkParams('testparam', 'Invalid number').isInt();
             yield next;
