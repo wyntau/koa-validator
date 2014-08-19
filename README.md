@@ -71,7 +71,7 @@ If you will use `checkBody` or `assertBody`, you should use one bodyparse middle
 - assertBody => checkBody
 - assertHeader => checkHeader
 - haveValidationError, return `true` if have any validationError
-- validationErrors, if have any validationError, return an array of error object you returned in `validatorErrorFormatter`
+- validationErrors, if have any validationError, return an array of error object you returned in `validationErrorFormatter`
 
 ### Check
 You can use all check methods in `validator.js`.
