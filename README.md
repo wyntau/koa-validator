@@ -16,7 +16,6 @@ a koa port of express-validator
     var koa = require('koa')
         , validator = require('koa-validator')()
         , bodyParser = require('koa-bodyparser')
-
         , app = koa()
         ;
 
