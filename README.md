@@ -9,28 +9,33 @@ a koa port of express-validator
 
 ### Install
 
-    npm install koa-validator
+```shell
+npm install koa-validator
+```
 
 ### Usage
 
-    var koa = require('koa')
-        , validator = require('koa-validator')
-        , bodyParser = require('koa-bodyparser')
-        , app = koa()
-        ;
+```js
+var koa = require('koa')
+    , validator = require('koa-validator')
+    , bodyParser = require('koa-bodyparser')
+    , app = koa()
+    ;
 
-    app
-        .use(bodyParser())
-        .use(validator({
-            onValidationError: function(errMsg){
-                console.log('Validation error:', errMsg);
-            }
-        }))
-        .use(functon *(next){
-            this.checkParams('testparam', 'Invalid number').isInt();
-            yield next;
-        })
-        .listen(3000)
+app
+    .use(bodyParser())
+    .use(validator({
+        onValidationError: function(errMsg){
+            console.log('Validation error:', errMsg);
+        }
+    }))
+    .use(functon *(next){
+        this.checkParams('testparam', 'Invalid number').isInt();
+        yield next;
+    })
+    .listen(3000)
+    ;
+```
 
 ### Options
 - onValidationError - `function(errMsg)`, default to null. The `errMsg` is the errMsg you defined when you check one variable
@@ -121,44 +126,46 @@ When you extend validator.js, your check function name best match `is*`, and you
 This is not force, but recommended.
 If you extend one function that validator.js have already had, the function will be ignored, and an error will be thrown.
 
-    var koa = require('koa')
-        , bodyParser = require('koa-bodyparser')
-        , validator = require('koa-validator')
-        ;
-
-    validator.extendCheck('isFinite', function(str){
-        return isFinite(str);
-    });
-    validator.extendCheck({
-        isFinite: function(str){
-            return isFinite(str);
-        }
-        , isFinite2: function(str){
-            return isFinite(str);
-        }
-    });
-
-    validator.extendSanitize('toZero', function(str){
-        return 0;
-    });
-    validator.extendSanitize({
-        toOne: function(str){
-            return 1;
-        }
-        , toTwo: function(str){
-            return 2;
-        }
-    });
-
-    koa()
-    .use(bodyParser())
-    .use(validator())
-    .use(function *(next){
-        this.checkParams('test', 'Invalid test value').isFinite();
-        yield next;
-    })
-    .listen(3000)
+```js
+var koa = require('koa')
+    , bodyParser = require('koa-bodyparser')
+    , validator = require('koa-validator')
     ;
+
+validator.extendCheck('isFinite', function(str){
+    return isFinite(str);
+});
+validator.extendCheck({
+    isFinite: function(str){
+        return isFinite(str);
+    }
+    , isFinite2: function(str){
+        return isFinite(str);
+    }
+});
+
+validator.extendSanitize('toZero', function(str){
+    return 0;
+});
+validator.extendSanitize({
+    toOne: function(str){
+        return 1;
+    }
+    , toTwo: function(str){
+        return 2;
+    }
+});
+
+koa()
+.use(bodyParser())
+.use(validator())
+.use(function *(next){
+    this.checkParams('test', 'Invalid test value').isFinite();
+    yield next;
+})
+.listen(3000)
+;
+```
 
 ### Thanks
 Thanks to [`koa-validate`](https://github.com/RocksonZeta/koa-validate), some extended methods and test suites are based on koa-validate.
