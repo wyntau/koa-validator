@@ -2,7 +2,6 @@ var koa = require('koa')
     , request = require('supertest')
     , bodyParser = require('koa-bodyparser')
     , router = require('koa-router')
-    , async = require('async')
 
     , validator = require('..')
     , createApp = function(){
@@ -16,7 +15,9 @@ var koa = require('koa')
 
 describe('validator', function(){
     it("these validates should be to ok" , function(done){
-        var app = createApp();
+        var app = createApp()
+            , errors
+            ;
         app.post('/validate',function*(){
             this.checkBody('name').notEmpty().len(3,20);
             this.checkBody('empty').empty();
@@ -67,8 +68,8 @@ describe('validator', function(){
             this.checkBody('hw').isHalfWidth();
             this.checkBody('vw').isVariableWidth();
             this.checkBody('sp').isSurrogatePair();
-            if(this._validationErrors){
-                this.body = this._validationErrors;
+            if(errors = this.validationErrors()){
+                this.body = errors;
                  return;
             }
             this.body= 'ok';
@@ -126,7 +127,9 @@ describe('validator', function(){
     });
 
     it("these validates fail tests should be to ok" , function(done){
-        var app = createApp();
+        var app = createApp()
+            , errors
+            ;
         app.post('/validate',function*(){
             this.checkBody('name').notEmpty().len(3,20);
             this.checkBody('notEmpty').notEmpty();
@@ -176,12 +179,20 @@ describe('validator', function(){
             this.checkBody('hw').isHalfWidth();
             this.checkBody('vw').isVariableWidth();
             this.checkBody('sp').isSurrogatePair();
-            if(this._validationErrors.length === 48){
-                this.body = this._validationErrors;
-                this.body = 'ok';
-                return ;
+
+            errors = this.validationErrors();
+            if(errors){
+                if(errors.length === 48){
+                    this.body = 'ok';
+                    return;
+                }else{
+                    this.body = 'only ' + errors.length + ' errors';
+                    return;
+                }
+            }else{
+                this.body = 'there is no error';
+                return;
             }
-            this.body= 'only '+this._validationErrors.length+' errors';
         });
         var req = request(app.listen());
 
@@ -236,12 +247,14 @@ describe('validator', function(){
     });
 
     it('there validate query should be to okay' , function(done){
-        var app = createApp();
+        var app = createApp()
+            , errors
+            ;
         app.get('/query',function*(){
             this.checkQuery('name').notEmpty();
             this.checkQuery('password').len(3,20);
-            if(this.errors){
-                this.body = this.errors;
+            if(errors = this.validationErrors()){
+                this.body = errors;
                  return;
             }
             this.body = 'ok';
@@ -256,11 +269,13 @@ describe('validator', function(){
     });
 
     it('there validate params should be to okay' , function(done){
-        var app = createApp();
+        var app = createApp()
+            , errors
+            ;
         app.get('/:id',function*(){
             this.checkParams('id').isInt();
-            if(this._validationErrors){
-                this.body = this._validationErrors;
+            if(errors = this.validationErrors()){
+                this.body = errors;
                  return;
             }
             this.body = 'ok';
