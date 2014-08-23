@@ -57,7 +57,7 @@ app
         }
 
 ### Note
-If you will use `checkBody` or `assertBody`, you should use one bodyparse middleware before validator.
+If you will use `checkBody` or `assertBody` or `sanitizeBody`, you should use one bodyparse middleware before validator.
 
 ### Test
 
