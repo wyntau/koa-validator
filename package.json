@@ -1,6 +1,6 @@
 {
   "name": "koa-validator",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "a koa port of express-validator",
   "main": "index.js",
   "scripts": {
@@ -13,16 +13,16 @@
   "author": "Treri",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^1.9.1",
-    "koa": "^0.10.0",
-    "koa-bodyparser": "^1.0.1",
-    "koa-router": "^3.2.3",
-    "mocha": "^1.21.4",
-    "supertest": "^0.13.0"
+    "chai": "^2.1.0",
+    "koa": "^0.18.1",
+    "koa-bodyparser": "^1.4.0",
+    "koa-router": "^4.2.0",
+    "mocha": "^2.1.0",
+    "supertest": "^0.15.0"
   },
   "dependencies": {
     "is": "^3.0.1",
-    "validator": "^3.17.0"
+    "validator": "^3.32.0"
   },
   "directories": {
     "test": "test"
