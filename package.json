@@ -21,7 +21,7 @@
     "supertest": "^0.13.0"
   },
   "dependencies": {
-    "jistype": "^0.1.0",
+    "is": "^3.0.1",
     "validator": "^3.17.0"
   },
   "directories": {
